@@ -1,1 +1,3693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07090d">
+<title>Hermanos de Oro — La historia es tuya</title>
 
+<style>
+:root{
+  --bg:#07090d;
+  --panel:#10141c;
+  --panel2:#171d28;
+  --line:#293342;
+  --text:#f5f6f8;
+  --muted:#98a4b5;
+  --gold:#e7bd62;
+  --gold2:#b98c35;
+  --green:#63d79a;
+  --red:#ff6872;
+  --blue:#78a9ff;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 20% 0%,#1a2434 0,#07090d 40%),
+    #07090d;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+body{min-height:100vh}
+
+button,input,textarea,select{font:inherit}
+
+button{cursor:pointer}
+
+button:active{transform:scale(.98)}
+
+.app{min-height:100vh}
+
+.top{
+  height:72px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:0 24px;
+  background:#090c12ed;
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(15px);
+}
+
+.brand{
+  font-weight:950;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+
+.brand small{
+  display:block;
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:.2em;
+  margin-top:4px;
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.nav button,
+.ghost{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:9px 13px;
+}
+
+.nav button.active,
+.primary{
+  background:var(--gold);
+  color:#171208;
+  border:1px solid var(--gold);
+  font-weight:850;
+}
+
+main{
+  width:min(1250px,100%);
+  margin:auto;
+  padding:30px 22px 80px;
+}
+
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:42px;
+  line-height:1;
+  margin:0;
+}
+
+.hero p{
+  margin:8px 0 0;
+  color:var(--muted);
+}
+
+.actions{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.card{
+  background:linear-gradient(145deg,#131923,#0d1118);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 18px 60px #0005;
+}
+
+.player{
+  padding:18px;
+}
+
+.portrait{
+  height:230px;
+  background:linear-gradient(135deg,#202b3b,#0d1219);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.portrait img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.avatar{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#111824;
+  border:2px solid #ffffff20;
+  color:var(--gold);
+  font-size:36px;
+  font-weight:900;
+}
+
+.player h2{
+  margin:15px 0 4px;
+  font-size:22px;
+}
+
+.sub{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin:15px 0;
+}
+
+.stat{
+  background:var(--panel2);
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  font-size:18px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.08em;
+}
+
+.money{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--line);
+  padding-top:13px;
+}
+
+.money b{font-size:18px}
+
+.positive{color:var(--green)}
+.negative{color:var(--red)}
+
+.section{
+  margin-top:28px;
+}
+
+.section h2{
+  font-size:19px;
+}
+
+.event{
+  display:grid;
+  grid-template-columns:250px 1fr;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.event img{
+  width:250px;
+  height:190px;
+  object-fit:cover;
+  background:#151c27;
+}
+
+.event-body{
+  padding:17px;
+}
+
+.event-meta{
+  color:var(--gold);
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.event h3{
+  margin:8px 0;
+  font-size:20px;
+}
+
+.event p{
+  color:#c5ccd6;
+  line-height:1.55;
+}
+
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.feed{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.feed .event{
+  display:block;
+}
+
+.feed .event img{
+  width:100%;
+  height:260px;
+}
+
+.feed .event-body{
+  padding:15px;
+}
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+
+.chip{
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:5px 8px;
+  font-size:11px;
+}
+
+.event-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.small{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:7px 9px;
+  font-size:12px;
+}
+
+.empty{
+  padding:55px 20px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--line);
+  border-radius:16px;
+}
+
+.kpis{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.kpi{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+}
+
+.kpi span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.kpi b{
+  display:block;
+  margin-top:5px;
+  font-size:21px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.tabs button{
+  white-space:nowrap;
+  background:transparent;
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:9px 12px;
+}
+
+.tabs button.active{
+  color:#161109;
+  background:var(--gold);
+  border-color:var(--gold);
+  font-weight:800;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:#000c;
+}
+
+.modal.show{display:flex}
+
+.modalbox{
+  width:min(800px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#0d121a;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+}
+
+.modalbox h2{margin-top:0}
+
+.form{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  background:#080b10;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px;
+  outline:none;
+}
+
+textarea{
+  min-height:125px;
+  resize:vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--gold);
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:17px;
+}
+
+.notice{
+  background:#121a25;
+  border:1px solid #2b3d56;
+  color:#b9c7da;
+  padding:12px;
+  border-radius:12px;
+  line-height:1.5;
+  font-size:13px;
+}
+
+.table-wrap{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+
+th,td{
+  padding:11px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+}
+
+th{
+  color:var(--gold);
+  font-size:12px;
+}
+
+td{
+  color:#d6dbe3;
+}
+
+.progress{
+  height:8px;
+  border-radius:99px;
+  background:#080b10;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.progress i{
+  display:block;
+  height:100%;
+  background:var(--gold);
+  border-radius:99px;
+}
+
+.history-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:9px;
+}
+
+.image-preview{
+  width:100%;
+  max-height:350px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid var(--line);
+  margin-top:12px;
+}
+
+.install{
+  display:none;
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  z-index:50;
+  padding:13px;
+  border-radius:14px;
+  background:#151c27;
+  border:1px solid #39475a;
+  box-shadow:0 15px 45px #0009;
+  font-size:13px;
+}
+
+@media(max-width:850px){
+  .top{
+    height:auto;
+    min-height:70px;
+    padding:12px 14px;
+  }
+
+  .nav{
+    justify-content:flex-end;
+  }
+
+  .nav button{
+    padding:8px 9px;
+    font-size:11px;
+  }
+
+  main{
+    padding:24px 14px 70px;
+  }
+
+  .hero{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .feed{
+    grid-template-columns:1fr;
+  }
+
+  .event{
+    grid-template-columns:1fr;
+  }
+
+  .event img{
+    width:100%;
+    height:230px;
+  }
+
+  .kpis{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .form{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+}
+
+@media(max-width:500px){
+  .brand{
+    font-size:12px;
+  }
+
+  .brand small{
+    font-size:7px;
+  }
+
+  .kpis{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .kpi b{
+    font-size:17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="top">
+  <div class="brand">
+    HERMANOS DE ORO
+    <small>LA HISTORIA ES TUYA</small>
+  </div>
+
+  <div class="nav">
+    <button id="homeBtn" class="active" onclick="showHome()">Inicio</button>
+    <button onclick="openStoryModal()">Nueva historia</button>
+    <button onclick="openEventModal()">Registrar evento</button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<div id="installHint" class="install">
+  📱 En iPhone: toca <b>Compartir</b> → <b>Añadir a pantalla de inicio</b>.
+</div>
+
+</div>
+
+<div id="modal" class="modal">
+  <div id="modalBox" class="modalbox"></div>
+</div>
+
+<script>
+/* ============================================================
+   HERMANOS DE ORO — FASE 1
+   Todo en un solo HTML.
+   Persistencia: localStorage.
+   Imágenes propias: base64.
+   ============================================================ */
+
+const STORAGE_KEY="HERMANOS_DE_ORO_FASE1";
+
+let state=loadState();
+
+let currentView={
+  type:"home",
+  playerId:null
+};
+
+function defaultState(){
+  return {
+    stories:[],
+    activeStory:null
+  };
+}
+
+function loadState(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultState();
+  }catch(e){
+    return defaultState();
+  }
+}
+
+function saveState(){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+}
+
+function uid(){
+  if(window.crypto && crypto.randomUUID){
+    return crypto.randomUUID();
+  }
+
+  return Date.now().toString(36)+Math.random().toString(36).slice(2);
+}
+
+function story(){
+  return state.stories.find(s=>s.id===state.activeStory);
+}
+
+function getPlayer(id){
+  const s=story();
+  return s ? s.players.find(p=>p.id===id) : null;
+}
+
+function esc(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function money(value){
+  return new Intl.NumberFormat("en-US",{
+    style:"currency",
+    currency:"USD",
+    maximumFractionDigits:0
+  }).format(Number(value)||0);
+}
+
+function number(value){
+  return new Intl.NumberFormat("en-US",{
+    maximumFractionDigits:1
+  }).format(Number(value)||0);
+}
+
+function initials(name){
+  return String(name||"?")
+    .split(" ")
+    .filter(Boolean)
+    .map(x=>x[0])
+    .slice(0,2)
+    .join("")
+    .toUpperCase();
+}
+
+/* ============================================================
+   FECHAS / EDADES
+   ============================================================ */
+
+function yearFromDate(date){
+  const match=String(date||"").match(/\b(19|20|21)\d{2}\b/);
+  return match ? Number(match[0]) : null;
+}
+
+function exactDateSort(a,b){
+  const ya=yearFromDate(a.date)||0;
+  const yb=yearFromDate(b.date)||0;
+
+  if(ya!==yb){
+    return yb-ya;
+  }
+
+  return String(b.date).localeCompare(String(a.date));
+}
+
+function ageAt(birthDate,targetYear){
+  if(!birthDate){
+    return "—";
+  }
+
+  const birthYear=Number(String(birthDate).slice(0,4));
+  const year=Number(targetYear)||new Date().getFullYear();
+
+  return Math.max(0,year-birthYear);
+}
+
+/* ============================================================
+   NORMALIZACIÓN DE DATOS
+   ============================================================ */
+
+function normalizePlayer(p){
+  p.social=p.social||{
+    instagram:0,
+    tiktok:0,
+    x:0,
+    youtube:0
+  };
+
+  p.socialHistory=p.socialHistory||[];
+
+  p.lastSeason=p.lastSeason||{
+    pts:0,
+    reb:0,
+    ast:0,
+    gp:0
+  };
+
+  p.career=p.career||{
+    pts:0,
+    reb:0,
+    ast:0,
+    gp:0
+  };
+
+  p.selection=p.selection||{
+    pts:0,
+    reb:0,
+    ast:0,
+    gp:0,
+    tournaments:[]
+  };
+
+  p.budget=p.budget||{
+    mansion:0,
+    cars:0,
+    familyRD:0,
+    agent:0,
+    publicist:0,
+    other:0
+  };
+
+  p.events=p.events||[];
+  p.awards=p.awards||[];
+  p.assets=p.assets||[];
+  p.contracts=p.contracts||[];
+  p.family=p.family||[];
+
+  return p;
+}
+
+function newPlayer(index){
+  return {
+    id:uid(),
+    name:"Hermano "+index,
+    birthDate:"",
+    position:"",
+    team:"",
+    photo:"",
+    personality:"",
+    relationshipStatus:"",
+
+    netWorth:0,
+
+    social:{
+      instagram:0,
+      tiktok:0,
+      x:0,
+      youtube:0
+    },
+
+    socialHistory:[],
+
+    lastSeason:{
+      pts:0,
+      reb:0,
+      ast:0,
+      gp:0
+    },
+
+    career:{
+      pts:0,
+      reb:0,
+      ast:0,
+      gp:0
+    },
+
+    selection:{
+      pts:0,
+      reb:0,
+      ast:0,
+      gp:0,
+      tournaments:[]
+    },
+
+    budget:{
+      mansion:0,
+      cars:0,
+      familyRD:0,
+      agent:0,
+      publicist:0,
+      other:0
+    },
+
+    events:[],
+    awards:[],
+    assets:[],
+    contracts:[],
+    family:[]
+  };
+}
+
+/* ============================================================
+   NAVEGACIÓN
+   ============================================================ */
+
+function showHome(){
+  currentView={
+    type:"home",
+    playerId:null
+  };
+
+  if(!story()){
+    renderNoStory();
+  }else{
+    renderDashboard();
+  }
+}
+
+function renderNoStory(){
+  document.getElementById("app").innerHTML=`
+    <div class="hero">
+      <div>
+        <h1>HERMANOS DE ORO</h1>
+        <p>LA HISTORIA ES TUYA</p>
+      </div>
+    </div>
+
+    <div class="empty">
+      <h2>Tu universo todavía está vacío.</h2>
+      <p>Crea una historia con una, dos o tres personas.</p>
+      <button class="primary" onclick="openStoryModal()">
+        ＋ CREAR NUEVA HISTORIA
+      </button>
+    </div>
+  `;
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+function renderDashboard(){
+
+  const s=story();
+
+  s.players.forEach(normalizePlayer);
+
+  const cards=s.players.map(p=>`
+
+    <article class="card">
+
+      <div class="portrait">
+        ${
+          p.photo
+          ? `<img src="${p.photo}" alt="${esc(p.name)}">`
+          : `<div class="avatar">${esc(initials(p.name))}</div>`
+        }
+      </div>
+
+      <div class="player">
+
+        <h2>${esc(p.name)}</h2>
+
+        <div class="sub">
+          ${esc(p.position||"Posición no definida")}
+          ·
+          ${esc(p.team||"Equipo no definido")}
+          ·
+          ${ageAt(p.birthDate,s.currentYear)} años
+        </div>
+
+        <div class="stats">
+
+          <div class="stat">
+            <b>${number(p.lastSeason.pts)}</b>
+            <span>PTS</span>
+          </div>
+
+          <div class="stat">
+            <b>${number(p.lastSeason.reb)}</b>
+            <span>REB</span>
+          </div>
+
+          <div class="stat">
+            <b>${number(p.lastSeason.ast)}</b>
+            <span>AST</span>
+          </div>
+
+        </div>
+
+        <div class="money">
+          <span>Patrimonio</span>
+          <b class="${p.netWorth<0?"negative":"positive"}">
+            ${money(p.netWorth)}
+          </b>
+        </div>
+
+        <div class="event-actions">
+
+          <button class="small" onclick="viewPlayer('${p.id}')">
+            Ver vida
+          </button>
+
+          <button class="small" onclick="openEventModal('${p.id}')">
+            ＋ Evento
+          </button>
+
+          <button class="small" onclick="editPlayer('${p.id}')">
+            Editar
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `).join("");
+
+  const recent=s.players
+    .flatMap(p=>p.events.map(e=>({
+      ...e,
+      playerName:p.name,
+      playerId:p.id
+    })))
+    .sort(exactDateSort)
+    .slice(0,8);
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="hero">
+
+      <div>
+        <h1>${esc(s.name)}</h1>
+
+        <p>
+          LA HISTORIA ES TUYA
+          · Año actual: <b>${s.currentYear}</b>
+          · ${s.players.length} protagonista${s.players.length===1?"":"s"}
+        </p>
+      </div>
+
+      <div class="actions">
+
+        <button class="primary" onclick="openEventModal()">
+          ＋ REGISTRAR EVENTO
+        </button>
+
+        ${
+          s.players.length<3
+          ? `<button class="ghost" onclick="openPlayerModal()">＋ Añadir hermano</button>`
+          : ""
+        }
+
+        <button class="ghost" onclick="openAdvanceModal()">
+          ⏭ Avanzar tiempo
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="grid">
+      ${cards}
+    </div>
+
+    <div class="section">
+
+      <h2>Actividad reciente</h2>
+
+      ${
+        recent.length
+        ? `<div class="timeline">
+             ${recent.map(eventCard).join("")}
+           </div>`
+        : `<div class="empty">
+             Registra el primer evento para comenzar la historia.
+           </div>`
+      }
+
+    </div>
+  `;
+
+  saveState();
+}
+
+/* ============================================================
+   PERFIL
+   ============================================================ */
+
+function viewPlayer(playerId){
+
+  const p=getPlayer(playerId);
+
+  if(!p){
+    return;
+  }
+
+  normalizePlayer(p);
+
+  currentView={
+    type:"player",
+    playerId
+  };
+
+  const s=story();
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="hero">
+
+      <div>
+
+        <h1>${esc(p.name)}</h1>
+
+        <p>
+          ${esc(p.position||"—")}
+          ·
+          ${esc(p.team||"—")}
+          ·
+          ${ageAt(p.birthDate,s.currentYear)} años
+          ·
+          ${s.currentYear}
+        </p>
+
+      </div>
+
+      <div class="actions">
+
+        <button class="primary"
+          onclick="openEventModal('${p.id}')">
+          ＋ REGISTRAR EVENTO
+        </button>
+
+        <button class="ghost"
+          onclick="showHome()">
+          ← Volver
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="kpis">
+
+      <div class="kpi">
+        <span>Patrimonio</span>
+        <b class="${p.netWorth<0?"negative":"positive"}">
+          ${money(p.netWorth)}
+        </b>
+      </div>
+
+      <div class="kpi">
+        <span>Instagram</span>
+        <b>${number(p.social.instagram)}</b>
+      </div>
+
+      <div class="kpi">
+        <span>PTS carrera</span>
+        <b>${number(p.career.pts)}</b>
+      </div>
+
+      <div class="kpi">
+        <span>Eventos</span>
+        <b>${p.events.length}</b>
+      </div>
+
+    </div>
+
+    <div class="section">
+
+      <div class="tabs">
+
+        <button class="active"
+          onclick="playerTab('timeline','${p.id}',this)">
+          Línea de tiempo
+        </button>
+
+        <button onclick="playerTab('nba','${p.id}',this)">
+          Carrera NBA
+        </button>
+
+        <button onclick="playerTab('rd','${p.id}',this)">
+          🇩🇴 Selección Dominicana
+        </button>
+
+        <button onclick="playerTab('social','${p.id}',this)">
+          Redes
+        </button>
+
+        <button onclick="playerTab('money','${p.id}',this)">
+          Dinero
+        </button>
+
+        <button onclick="playerTab('personal','${p.id}',this)">
+          Vida personal
+        </button>
+
+      </div>
+
+    </div>
+
+    <div id="playerTabContent"></div>
+  `;
+
+  playerTab("timeline",p.id);
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
+
+function playerTab(tab,playerId,button){
+
+  const p=getPlayer(playerId);
+
+  if(!p){
+    return;
+  }
+
+  normalizePlayer(p);
+
+  const box=document.getElementById("playerTabContent");
+
+  if(button){
+    document.querySelectorAll(".tabs button")
+      .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+  }
+
+  if(tab==="timeline"){
+
+    const events=[...p.events].sort(exactDateSort);
+
+    box.innerHTML=`
+
+      <div class="section">
+
+        <h2>Línea de tiempo</h2>
+
+        ${
+          events.length
+          ? `<div class="feed">
+               ${events.map(e=>eventCard({
+                 ...e,
+                 playerName:p.name,
+                 playerId:p.id
+               })).join("")}
+             </div>`
+          : `<div class="empty">
+               Este hermano todavía no tiene eventos.
+             </div>`
+        }
+
+      </div>
+    `;
+
+    return;
+  }
+
+  if(tab==="nba"){
+
+    const gp=p.career.gp||0;
+
+    box.innerHTML=`
+
+      <div class="section">
+
+        <h2>🏀 Carrera NBA</h2>
+
+        <div class="kpis">
+
+          <div class="kpi">
+            <span>Partidos</span>
+            <b>${number(gp)}</b>
+          </div>
+
+          <div class="kpi">
+            <span>Puntos totales</span>
+            <b>${number(p.career.pts)}</b>
+          </div>
+
+          <div class="kpi">
+            <span>Rebotes totales</span>
+            <b>${number(p.career.reb)}</b>
+          </div>
+
+          <div class="kpi">
+            <span>Asistencias totales</span>
+            <b>${number(p.career.ast)}</b>
+          </div>
+
+        </div>
+
+        <div class="card player" style="margin-top:15px">
+
+          <h3>Promedios históricos</h3>
+
+          <div class="stats">
+
+            <div class="stat">
+              <b>${average(p.career.pts,gp)}</b>
+              <span>PTS / PJ</span>
+            </div>
+
+            <div class="stat">
+              <b>${average(p.career.reb,gp)}</b>
+              <span>REB / PJ</span>
+            </div>
+
+            <div class="stat">
+              <b>${average(p.career.ast,gp)}</b>
+              <span>AST / PJ</span>
+            </div>
+
+          </div>
+
+          <p class="sub">
+            Los datos NBA se introducen desde tu partida de 2K.
+            El juego no inventa estadísticas que tú no hayas registrado.
+          </p>
+
+        </div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  if(tab==="rd"){
+
+    const gp=p.selection.gp||0;
+
+    box.innerHTML=`
+
+      <div class="section">
+
+        <h2>🇩🇴 Selección Dominicana</h2>
+
+        <div class="kpis">
+
+          <div class="kpi">
+            <span>Partidos</span>
+            <b>${number(gp)}</b>
+          </div>
+
+          <div class="kpi">
+            <span>Puntos</span>
+            <b>${number(p.selection.pts)}</b>
+          </div>
+
+          <div class="kpi">
+            <span>Rebotes</span>
+            <b>${number(p.selection.reb)}</b>
+          </div>
+
+          <div class="kpi">
+            <span>Asistencias</span>
+            <b>${number(p.selection.ast)}</b>
+          </div>
+
+        </div>
+
+        <div class="card player" style="margin-top:15px">
+
+          <h3>Promedios con República Dominicana</h3>
+
+          <div class="stats">
+
+            <div class="stat">
+              <b>${average(p.selection.pts,gp)}</b>
+              <span>PTS / PJ</span>
+            </div>
+
+            <div class="stat">
+              <b>${average(p.selection.reb,gp)}</b>
+              <span>REB / PJ</span>
+            </div>
+
+            <div class="stat">
+              <b>${average(p.selection.ast,gp)}</b>
+              <span>AST / PJ</span>
+            </div>
+
+          </div>
+
+          <h3>Torneos</h3>
+
+          ${
+            p.selection.tournaments.length
+            ? p.selection.tournaments.map(t=>`
+                <div class="history-card">
+                  <b>${esc(t.name)}</b>
+                  <div class="sub">
+                    ${esc(t.year)}
+                    · ${number(t.gp)} partidos
+                    · ${number(t.pts)} PTS
+                  </div>
+                </div>
+              `).join("")
+            : `<p class="sub">
+                 Todavía no hay torneos registrados.
+               </p>`
+          }
+
+        </div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  if(tab==="social"){
+
+    const rows=[...p.socialHistory]
+      .sort((a,b)=>a.year-b.year);
+
+    box.innerHTML=`
+
+      <div class="section">
+
+        <h2>📱 Crecimiento de redes sociales</h2>
+
+        <div class="notice">
+          Instagram, TikTok, X y YouTube se guardan por separado.
+        </div>
+
+        <div class="card player" style="margin-top:15px">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Año</th>
+                  <th>Instagram</th>
+                  <th>TikTok</th>
+                  <th>X</th>
+                  <th>YouTube</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                ${
+                  rows.length
+                  ? rows.map(r=>`
+                      <tr>
+                        <td>${r.year}</td>
+                        <td>${number(r.instagram)}</td>
+                        <td>${number(r.tiktok)}</td>
+                        <td>${number(r.x)}</td>
+                        <td>${number(r.youtube)}</td>
+                      </tr>
+                    `).join("")
+                  : `<tr>
+                       <td colspan="5">
+                         No hay historial anual todavía.
+                       </td>
+                     </tr>`
+                }
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+        <div class="stats">
+
+          <div class="stat">
+            <b>${number(p.social.instagram)}</b>
+            <span>INSTAGRAM</span>
+          </div>
+
+          <div class="stat">
+            <b>${number(p.social.tiktok)}</b>
+            <span>TIKTOK</span>
+          </div>
+
+          <div class="stat">
+            <b>${number(p.social.x)}</b>
+            <span>X</span>
+          </div>
+
+          <div class="stat">
+            <b>${number(p.social.youtube)}</b>
+            <span>YOUTUBE</span>
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  if(tab==="money"){
+
+    const b=p.budget;
+
+    const monthly=
+      Number(b.mansion)+
+      Number(b.cars)+
+      Number(b.familyRD)+
+      Number(b.agent)+
+      Number(b.publicist)+
+      Number(b.other);
+
+    box.innerHTML=`
+
+      <div class="section">
+
+        <h2>💰 Dinero y presupuesto mensual</h2>
+
+        <div class="kpis">
+
+          <div class="kpi">
+            <span>Patrimonio</span>
+            <b class="${p.netWorth<0?"negative":"positive"}">
+              ${money(p.netWorth)}
+            </b>
+          </div>
+
+          <div class="kpi">
+            <span>Gasto mensual</span>
+            <b class="negative">
+              -${money(monthly)}
+            </b>
+          </div>
+
+          <div class="kpi">
+            <span>Gasto anual</span>
+            <b class="negative">
+              -${money(monthly*12)}
+            </b>
+          </div>
+
+          <div class="kpi">
+            <span>Estado</span>
+            <b>${p.netWorth<0?"🔴 DEUDA":"🟢 POSITIVO"}</b>
+          </div>
+
+        </div>
+
+        <div class="card player" style="margin-top:15px">
+
+          <div class="form">
+
+            ${budgetInput(p.id,"mansion","🏠 Mansión / vivienda")}
+            ${budgetInput(p.id,"cars","🚘 Carros")}
+            ${budgetInput(p.id,"familyRD","🇩🇴 Familia en RD")}
+            ${budgetInput(p.id,"agent","🤝 Agente")}
+            ${budgetInput(p.id,"publicist","📣 Publicista")}
+            ${budgetInput(p.id,"other","➕ Otros")}
+
+          </div>
+
+        </div>
+
+        <div class="notice" style="margin-top:15px">
+          Estos gastos son recurrentes. Cuando avances el tiempo,
+          se descuentan automáticamente del patrimonio.
+        </div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  if(tab==="personal"){
+
+    box.innerHTML=`
+
+      <div class="section">
+
+        <h2>❤️ Vida personal</h2>
+
+        <div class="card player">
+
+          <h3>Personalidad</h3>
+
+          <p>
+            ${esc(p.personality||"No configurada todavía.")}
+          </p>
+
+          <h3>Estado sentimental</h3>
+
+          <p>
+            ${esc(p.relationshipStatus||"No definido.")}
+          </p>
+
+          <h3>Familia</h3>
+
+          ${
+            p.family.length
+            ? p.family.map(f=>`
+                <div class="history-card">
+                  <b>${esc(f.name)}</b>
+                  <div class="sub">
+                    ${esc(f.relationship||"Familia")}
+                    · ${esc(f.birthDate||"")}
+                  </div>
+                </div>
+              `).join("")
+            : `<p class="sub">
+                 No hay familiares registrados todavía.
+               </p>`
+          }
+
+        </div>
+
+      </div>
+    `;
+  }
+}
+
+function average(total,games){
+  return games ? number(total/games) : "—";
+}
+
+function budgetInput(pid,key,label){
+
+  const p=getPlayer(pid);
+
+  return `
+    <div class="field">
+
+      <label>${label} / mes</label>
+
+      <input
+        type="number"
+        min="0"
+        value="${Number(p.budget[key])||0}"
+        onchange="setBudget('${pid}','${key}',this.value)"
+      >
+
+    </div>
+  `;
+}
+
+function setBudget(pid,key,value){
+
+  const p=getPlayer(pid);
+
+  if(!p)return;
+
+  normalizePlayer(p);
+
+  p.budget[key]=Math.max(0,Number(value)||0);
+
+  saveState();
+
+  playerTab("money",pid);
+}
+
+/* ============================================================
+   TARJETAS DE EVENTOS
+   ============================================================ */
+
+function eventCard(e){
+
+  const image=e.image || createEventImage(e);
+
+  return `
+
+    <article class="event">
+
+      <div>
+
+        <img
+          src="${image}"
+          alt="Imagen del evento"
+          onclick="viewEventImage('${e.playerId}','${e.id}')"
+          style="cursor:pointer"
+        >
+
+      </div>
+
+      <div class="event-body">
+
+        <div class="event-meta">
+          ${esc(e.date)}
+          ·
+          ${esc(e.category)}
+          ·
+          ${esc(e.playerName)}
+        </div>
+
+        <h3>${esc(e.title)}</h3>
+
+        <p>
+          ${esc(e.narrative)}
+        </p>
+
+        <div class="chips">
+
+          ${(e.chips||[])
+            .map(x=>`<span class="chip">${esc(x)}</span>`)
+            .join("")}
+
+        </div>
+
+        <div class="event-actions">
+
+          <button class="small"
+            onclick="regenerateImage('${e.playerId}','${e.id}')">
+            🔄 Regenerar imagen
+          </button>
+
+          <button class="small"
+            onclick="uploadEventImage('${e.playerId}','${e.id}')">
+            📷 Usar mi foto
+          </button>
+
+          <button class="small"
+            onclick="editEvent('${e.playerId}','${e.id}')">
+            ✏️ Editar
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+  `;
+}
+
+/* ============================================================
+   CREAR HISTORIA
+   ============================================================ */
+
+function openStoryModal(){
+
+  openModal(`
+
+    <h2>Nueva historia</h2>
+
+    <div class="notice">
+      Cada historia es independiente. Puedes crear múltiples universos.
+    </div>
+
+    <div class="form" style="margin-top:15px">
+
+      <div class="field full">
+
+        <label>Nombre de la historia</label>
+
+        <input
+          id="storyName"
+          value="Los Hermanos Jiménez"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Protagonistas</label>
+
+        <select id="storyCount">
+
+          <option value="1">1 persona</option>
+          <option value="2">2 hermanos</option>
+          <option value="3" selected>3 hermanos</option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>Año inicial</label>
+
+        <input
+          id="startYear"
+          type="number"
+          value="2017"
+        >
+
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button class="ghost" onclick="closeModal()">
+        Cancelar
+      </button>
+
+      <button class="primary" onclick="createStory()">
+        Crear historia
+      </button>
+
+    </div>
+  `);
+}
+
+function createStory(){
+
+  const name=
+    document.getElementById("storyName").value.trim()
+    ||
+    "Nueva historia";
+
+  const count=
+    Number(document.getElementById("storyCount").value);
+
+  const year=
+    Number(document.getElementById("startYear").value)
+    ||
+    2017;
+
+  const newStory={
+    id:uid(),
+    name,
+    startYear:year,
+    currentYear:year,
+    players:[]
+  };
+
+  for(let i=1;i<=count;i++){
+    newStory.players.push(newPlayer(i));
+  }
+
+  state.stories.push(newStory);
+
+  state.activeStory=newStory.id;
+
+  saveState();
+
+  closeModal();
+
+  showHome();
+}
+
+/* ============================================================
+   CREAR / EDITAR HERMANO
+   ============================================================ */
+
+function openPlayerModal(){
+
+  const s=story();
+
+  if(!s || s.players.length>=3){
+    alert("El máximo es de 3 protagonistas.");
+    return;
+  }
+
+  openPlayerEditor(newPlayer(s.players.length+1),false);
+}
+
+function editPlayer(pid){
+
+  const p=getPlayer(pid);
+
+  if(!p)return;
+
+  openPlayerEditor(p,true);
+}
+
+function openPlayerEditor(p,isEdit){
+
+  normalizePlayer(p);
+
+  openModal(`
+
+    <h2>
+      ${isEdit?"Editar":"Crear"} protagonista
+    </h2>
+
+    <div class="form">
+
+      <div class="field full">
+
+        <label>Nombre completo</label>
+
+        <input
+          id="p_name"
+          value="${esc(p.name)}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Fecha de nacimiento</label>
+
+        <input
+          id="p_birth"
+          type="date"
+          value="${p.birthDate||""}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Posición</label>
+
+        <select id="p_position">
+
+          ${[
+            "Base",
+            "Escolta",
+            "Alero",
+            "Ala-Pívot",
+            "Pívot"
+          ].map(x=>`
+            <option ${p.position===x?"selected":""}>
+              ${x}
+            </option>
+          `).join("")}
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>Equipo NBA actual</label>
+
+        <input
+          id="p_team"
+          value="${esc(p.team)}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Patrimonio inicial</label>
+
+        <input
+          id="p_money"
+          type="number"
+          value="${p.netWorth||0}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Instagram inicial</label>
+
+        <input
+          id="p_ig"
+          type="number"
+          value="${p.social.instagram||0}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>TikTok inicial</label>
+
+        <input
+          id="p_tiktok"
+          type="number"
+          value="${p.social.tiktok||0}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>X inicial</label>
+
+        <input
+          id="p_x"
+          type="number"
+          value="${p.social.x||0}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>YouTube inicial</label>
+
+        <input
+          id="p_youtube"
+          type="number"
+          value="${p.social.youtube||0}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Partidos NBA carrera iniciales</label>
+
+        <input
+          id="p_gp"
+          type="number"
+          value="${p.career.gp||0}"
+        >
+
+      </div>
+
+      <div class="field full">
+
+        <label>
+          Personalidad
+        </label>
+
+        <textarea
+          id="p_personality"
+          placeholder="Ej: extrovertido, competitivo, familiar, bromista..."
+        >${esc(p.personality)}</textarea>
+
+      </div>
+
+      <div class="field">
+
+        <label>Estado sentimental</label>
+
+        <input
+          id="p_relationship"
+          value="${esc(p.relationshipStatus)}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Foto del hermano</label>
+
+        <input
+          id="p_photo"
+          type="file"
+          accept="image/*"
+        >
+
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button class="ghost" onclick="closeModal()">
+        Cancelar
+      </button>
+
+      <button
+        class="primary"
+        onclick="savePlayer('${p.id}',${isEdit})"
+      >
+        Guardar
+      </button>
+
+    </div>
+  `);
+}
+
+function savePlayer(pid,isEdit){
+
+  const s=story();
+
+  let p=getPlayer(pid);
+
+  if(!p){
+    p=newPlayer(s.players.length+1);
+  }
+
+  normalizePlayer(p);
+
+  p.name=
+    document.getElementById("p_name").value.trim()
+    ||
+    p.name;
+
+  p.birthDate=
+    document.getElementById("p_birth").value;
+
+  p.position=
+    document.getElementById("p_position").value;
+
+  p.team=
+    document.getElementById("p_team").value.trim();
+
+  p.netWorth=
+    Number(document.getElementById("p_money").value)||0;
+
+  p.social.instagram=
+    Number(document.getElementById("p_ig").value)||0;
+
+  p.social.tiktok=
+    Number(document.getElementById("p_tiktok").value)||0;
+
+  p.social.x=
+    Number(document.getElementById("p_x").value)||0;
+
+  p.social.youtube=
+    Number(document.getElementById("p_youtube").value)||0;
+
+  p.career.gp=
+    Number(document.getElementById("p_gp").value)||0;
+
+  p.personality=
+    document.getElementById("p_personality").value.trim();
+
+  p.relationshipStatus=
+    document.getElementById("p_relationship").value.trim();
+
+  const file=
+    document.getElementById("p_photo").files[0];
+
+  const finish=()=>{
+    if(!isEdit){
+      s.players.push(p);
+    }
+
+    saveState();
+    closeModal();
+    showHome();
+  };
+
+  if(file){
+
+    const reader=new FileReader();
+
+    reader.onload=()=>{
+      p.photo=reader.result;
+      finish();
+    };
+
+    reader.readAsDataURL(file);
+
+  }else{
+    finish();
+  }
+}
+
+/* ============================================================
+   REGISTRAR EVENTO
+   ============================================================ */
+
+function openEventModal(playerId){
+
+  const s=story();
+
+  if(!s){
+    alert("Primero crea una historia.");
+    return;
+  }
+
+  const options=s.players.map(p=>`
+    <option
+      value="${p.id}"
+      ${playerId===p.id?"selected":""}
+    >
+      ${esc(p.name)}
+    </option>
+  `).join("");
+
+  openModal(`
+
+    <h2>Registrar evento</h2>
+
+    <div class="notice">
+      Escribe lo que pasó de la forma más natural posible.
+      El juego intentará detectar dinero, compras, seguidores,
+      estadísticas, premios, contratos, selección y vida personal.
+    </div>
+
+    <div class="form" style="margin-top:15px">
+
+      <div class="field">
+
+        <label>Hermano</label>
+
+        <select id="eventPlayer">
+          ${options}
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>Fecha exacta / año</label>
+
+        <input
+          id="eventDate"
+          placeholder="2019 o 2019-06-15"
+        >
+
+      </div>
+
+      <div class="field full">
+
+        <label>¿Qué pasó?</label>
+
+        <textarea
+          id="eventText"
+          placeholder="Ej: 2019: Edwin está saliendo con Madison Beer"
+        ></textarea>
+
+      </div>
+
+      <div class="field">
+
+        <label>Categoría</label>
+
+        <select id="eventCategory">
+
+          <option value="AUTO">Detectar automáticamente</option>
+          <option>DEPORTE</option>
+          <option>SELECCIÓN RD</option>
+          <option>DINERO</option>
+          <option>NEGOCIO</option>
+          <option>REDES</option>
+          <option>AMOR/FAMILIA</option>
+          <option>DRAMA</option>
+          <option>FAMILIA</option>
+          <option>RD</option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>Imagen</label>
+
+        <select id="eventImageMode">
+
+          <option value="auto">
+            Generar / crear automáticamente
+          </option>
+
+          <option value="none">
+            Sin imagen por ahora
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button class="ghost" onclick="closeModal()">
+        Cancelar
+      </button>
+
+      <button class="primary" onclick="processEvent()">
+        ✨ Procesar evento
+      </button>
+
+    </div>
+  `);
+}
+
+function processEvent(){
+
+  const playerId=
+    document.getElementById("eventPlayer").value;
+
+  const text=
+    document.getElementById("eventText").value.trim();
+
+  const date=
+    document.getElementById("eventDate").value.trim();
+
+  const forcedCategory=
+    document.getElementById("eventCategory").value;
+
+  if(!text){
+    alert("Escribe qué pasó.");
+    return;
+  }
+
+  if(!date){
+    alert("Introduce el año o fecha del evento.");
+    return;
+  }
+
+  const year=yearFromDate(date);
+
+  if(!year){
+    alert("Fecha inválida. Usa por ejemplo 2019 o 2019-06-15.");
+    return;
+  }
+
+  const p=getPlayer(playerId);
+
+  if(!p){
+    alert("No se encontró el hermano.");
+    return;
+  }
+
+  const event=parseEvent(
+    text,
+    p,
+    date,
+    forcedCategory
+  );
+
+  p.events.push(event);
+
+  /*
+    El año de la partida avanza solamente hacia adelante.
+    El evento conserva SIEMPRE su fecha original.
+  */
+
+  const s=story();
+
+  if(year>s.currentYear){
+    applyTimeAdvance(s,year);
+  }
+
+  applyEvent(p,event);
+
+  saveState();
+
+  closeModal();
+
+  viewPlayer(p.id);
+}
+
+/* ============================================================
+   INTERPRETACIÓN DEL TEXTO
+   ============================================================ */
+
+function parseEvent(text,p,date,forcedCategory){
+
+  const low=text.toLowerCase();
+
+  let category=detectCategory(low);
+
+  if(forcedCategory && forcedCategory!=="AUTO"){
+    category=forcedCategory;
+  }
+
+  const chips=[];
+
+  if(category==="DEPORTE"){
+    chips.push("🏀 NBA");
+  }
+
+  if(category==="SELECCIÓN RD"){
+    chips.push("🇩🇴 Selección Dominicana");
+  }
+
+  if(category==="DINERO"){
+    chips.push("💰 Finanzas");
+  }
+
+  if(category==="NEGOCIO"){
+    chips.push("💼 Marca / contrato");
+  }
+
+  if(category==="AMOR/FAMILIA"){
+    chips.push("❤️ Vida personal");
+  }
+
+  if(category==="DRAMA"){
+    chips.push("🔥 Drama");
+  }
+
+  if(/mvp|campe[oó]n|all.?star|premio|r[eé]cord/.test(low)){
+    chips.push("🏆 Logro");
+  }
+
+  const amounts=extractMoney(text);
+
+  let income=0;
+  let expense=0;
+
+  if(
+    /gan[oó]|recibi[oó]|cobr[oó]|ingres[oó]|bono|firm[oó]|salario/.test(low)
+  ){
+    income=amounts[0]||0;
+  }
+
+  if(
+    /compr[oó]|pag[oó]|gast[oó]|cost[oó]|perdi[oó]|mans[ií]on|casa|carro/.test(low)
+  ){
+    expense=amounts.length
+      ? amounts[amounts.length-1]
+      : 0;
+  }
+
+  if(income){
+    chips.push("+"+money(income));
+  }
+
+  if(expense){
+    chips.push("-"+money(expense));
+  }
+
+  const socialDelta=extractSocial(text);
+
+  if(
+    socialDelta.instagram ||
+    socialDelta.tiktok ||
+    socialDelta.x ||
+    socialDelta.youtube
+  ){
+    chips.push("📱 Redes sociales");
+  }
+
+  const stats=extractStats(text);
+
+  if(stats.pts!==null || stats.reb!==null || stats.ast!==null){
+    chips.push("📊 Estadísticas");
+  }
+
+  const title=
+    text
+      .replace(/^\s*\d{4}(?:-\d{2}-\d{2})?\s*[:\-]\s*/,"")
+      .split(/[.!?]/)[0]
+      .trim()
+      .slice(0,100);
+
+  return {
+    id:uid(),
+    date,
+    category,
+    title:title||"Nuevo evento",
+    description:text,
+    narrative:createNarrative(
+      p,
+      text,
+      category,
+      income,
+      expense
+    ),
+    chips,
+    delta:{
+      income,
+      expense
+    },
+    socialDelta,
+    stats,
+    image:createEventImage({
+      playerName:p.name,
+      title,
+      date,
+      category
+    })
+  };
+}
+
+function detectCategory(low){
+
+  if(
+    /selecci[oó]n|rep[uú]blica dominicana|dominicana|centrobasket|americup|mundial|jjoo|ol[ií]mp/.test(low)
+  ){
+    return "SELECCIÓN RD";
+  }
+
+  if(
+    /mvp|campe[oó]n|all.?star|nba|partido|pts|puntos|reb|rebotes|ast|asistencias|r[eé]cord/.test(low)
+  ){
+    return "DEPORTE";
+  }
+
+  if(
+    /contrato|nike|adidas|gatorade|marca|patrocinio|patrocinador/.test(low)
+  ){
+    return "NEGOCIO";
+  }
+
+  if(
+    /compr[oó]|pag[oó]|gast[oó]|mans[ií]on|casa|carro|ferrari|lamborghini/.test(low)
+  ){
+    return "DINERO";
+  }
+
+  if(
+    /novia|novio|pareja|sale con|saliendo con|rompi[oó]|ruptura|boda|cas[oó]|hijo|hija|embaraz/.test(low)
+  ){
+    return "AMOR/FAMILIA";
+  }
+
+  if(
+    /instagram|ig|tiktok|twitter|seguidores|youtube/.test(low)
+  ){
+    return "REDES";
+  }
+
+  if(
+    /pelea|esc[aá]ndalo|pol[eé]mica|criticado|demanda|arrest/.test(low)
+  ){
+    return "DRAMA";
+  }
+
+  return "VIDA";
+}
+
+function extractMoney(text){
+
+  const matches=[
+    ...text.matchAll(
+      /(?:\$|usd\s*)?([\d,.]+)\s*(millones?|m|mil|k)?/gi
+    )
+  ];
+
+  const values=[];
+
+  for(const match of matches){
+
+    let value=
+      parseFloat(
+        match[1].replace(/,/g,"")
+      );
+
+    const unit=
+      String(match[2]||"").toLowerCase();
+
+    if(unit==="m" || unit.startsWith("mill")){
+      value*=1000000;
+    }else if(unit==="k"){
+      value*=1000;
+    }else if(unit==="mil"){
+      value*=1000;
+    }
+
+    if(value>=1000){
+      values.push(value);
+    }
+  }
+
+  return values;
+}
+
+function extractSocial(text){
+
+  const result={
+    instagram:0,
+    tiktok:0,
+    x:0,
+    youtube:0
+  };
+
+  const regex=
+    /([\d,.]+)\s*(k|m|mil|millones?)?\s*(?:de\s*)?(?:seguidores?\s*)?(?:en\s*)?(instagram|ig|tiktok|twitter|x|youtube)/gi;
+
+  const matches=[...text.matchAll(regex)];
+
+  for(const m of matches){
+
+    let value=
+      parseFloat(
+        m[1].replace(/,/g,"")
+      );
+
+    const unit=
+      String(m[2]||"").toLowerCase();
+
+    if(unit==="k"){
+      value*=1000;
+    }
+
+    if(unit==="m" || unit.includes("mill")){
+      value*=1000000;
+    }
+
+    if(unit==="mil"){
+      value*=1000;
+    }
+
+    const network=
+      m[3].toLowerCase();
+
+    if(network==="instagram" || network==="ig"){
+      result.instagram=value;
+    }
+
+    if(network==="tiktok"){
+      result.tiktok=value;
+    }
+
+    if(network==="twitter" || network==="x"){
+      result.x=value;
+    }
+
+    if(network==="youtube"){
+      result.youtube=value;
+    }
+  }
+
+  return result;
+}
+
+function extractStats(text){
+
+  const result={
+    pts:null,
+    reb:null,
+    ast:null,
+    gp:0
+  };
+
+  const pts=text.match(
+    /([\d.]+)\s*(?:pts|puntos)/i
+  );
+
+  const reb=text.match(
+    /([\d.]+)\s*(?:reb|rebotes)/i
+  );
+
+  const ast=text.match(
+    /([\d.]+)\s*(?:ast|asistencias)/i
+  );
+
+  const gp=text.match(
+    /([\d.]+)\s*(?:partidos|games|pj)/i
+  );
+
+  if(pts)result.pts=Number(pts[1]);
+  if(reb)result.reb=Number(reb[1]);
+  if(ast)result.ast=Number(ast[1]);
+  if(gp)result.gp=Number(gp[1]);
+
+  return result;
+}
+
+/* ============================================================
+   APLICAR EVENTO
+   ============================================================ */
+
+function applyEvent(p,event){
+
+  normalizePlayer(p);
+
+  const income=
+    Number(event.delta.income)||0;
+
+  const expense=
+    Number(event.delta.expense)||0;
+
+  p.netWorth+=income-expense;
+
+  /* Redes */
+
+  for(const network of Object.keys(p.social)){
+
+    const delta=
+      Number(event.socialDelta[network])||0;
+
+    if(delta){
+      p.social[network]+=delta;
+    }
+  }
+
+  /* Historial social por año */
+
+  const year=yearFromDate(event.date);
+
+  if(year){
+
+    let row=
+      p.socialHistory.find(
+        x=>x.year===year
+      );
+
+    if(!row){
+
+      row={
+        year,
+        instagram:p.social.instagram,
+        tiktok:p.social.tiktok,
+        x:p.social.x,
+        youtube:p.social.youtube
+      };
+
+      p.socialHistory.push(row);
+
+    }else{
+
+      row.instagram=p.social.instagram;
+      row.tiktok=p.social.tiktok;
+      row.x=p.social.x;
+      row.youtube=p.social.youtube;
+
+    }
+  }
+
+  /* Estadísticas */
+
+  const s=event.stats;
+
+  if(
+    s.pts!==null ||
+    s.reb!==null ||
+    s.ast!==null
+  ){
+
+    const isRD=
+      event.category==="SELECCIÓN RD";
+
+    if(isRD){
+
+      p.selection.pts+=s.pts||0;
+      p.selection.reb+=s.reb||0;
+      p.selection.ast+=s.ast||0;
+      p.selection.gp+=s.gp||0;
+
+      p.selection.tournaments.push({
+        name:detectTournament(event.description),
+        year:year||event.date,
+        gp:s.gp||0,
+        pts:s.pts||0,
+        reb:s.reb||0,
+        ast:s.ast||0
+      });
+
+    }else{
+
+      p.lastSeason.pts=
+        s.pts!==null
+        ? s.pts
+        : p.lastSeason.pts;
+
+      p.lastSeason.reb=
+        s.reb!==null
+        ? s.reb
+        : p.lastSeason.reb;
+
+      p.lastSeason.ast=
+        s.ast!==null
+        ? s.ast
+        : p.lastSeason.ast;
+
+      p.lastSeason.gp=
+        s.gp||p.lastSeason.gp;
+
+      p.career.pts+=s.pts||0;
+      p.career.reb+=s.reb||0;
+      p.career.ast+=s.ast||0;
+      p.career.gp+=s.gp||0;
+
+    }
+  }
+
+  /* Premios */
+
+  if(
+    /mvp/i.test(event.description)
+  ){
+    p.awards.push({
+      date:event.date,
+      name:"MVP"
+    });
+  }
+
+  if(
+    /campe[oó]n|campeonato/i.test(event.description)
+  ){
+    p.awards.push({
+      date:event.date,
+      name:"Campeonato"
+    });
+  }
+
+  saveState();
+}
+
+function detectTournament(text){
+
+  const low=text.toLowerCase();
+
+  if(low.includes("centrobasket")){
+    return "Centrobasket";
+  }
+
+  if(low.includes("americup")){
+    return "AmeriCup";
+  }
+
+  if(low.includes("mundial")){
+    return "Mundial FIBA";
+  }
+
+  if(
+    low.includes("jjoo") ||
+    low.includes("olímp")
+  ){
+    return "Juegos Olímpicos";
+  }
+
+  return "Selección Dominicana";
+}
+
+/* ============================================================
+   NARRATIVA
+   ============================================================ */
+
+function createNarrative(
+  p,
+  text,
+  category,
+  income,
+  expense
+){
+
+  let narrative=
+    `${p.name} protagoniza un nuevo capítulo de su vida. ${text}`;
+
+  if(income){
+
+    narrative+=
+      ` El ingreso registrado suma ${money(income)} a su patrimonio.`;
+
+  }
+
+  if(expense){
+
+    narrative+=
+      ` El gasto registrado resta ${money(expense)} a su patrimonio.`;
+
+  }
+
+  if(
+    expense &&
+    p.netWorth-expense<0
+  ){
+
+    narrative+=
+      ` La operación deja el patrimonio en terreno negativo y abre una nueva fuente de presión financiera.`;
+
+  }
+
+  return narrative;
+}
+
+/* ============================================================
+   IMÁGENES
+   ============================================================ */
+
+function createEventImage(event){
+
+  const name=
+    event.playerName||
+    "Jugador";
+
+  const title=
+    event.title||
+    "Evento";
+
+  const date=
+    event.date||
+    "";
+
+  const svg=`
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1200"
+      height="800"
+      viewBox="0 0 1200 800"
+    >
+
+      <defs>
+
+        <linearGradient
+          id="background"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="1"
+        >
+
+          <stop
+            offset="0%"
+            stop-color="#222d3e"
+          />
+
+          <stop
+            offset="100%"
+            stop-color="#07090d"
+          />
+
+        </linearGradient>
+
+      </defs>
+
+      <rect
+        width="1200"
+        height="800"
+        fill="url(#background)"
+      />
+
+      <circle
+        cx="930"
+        cy="150"
+        r="230"
+        fill="#e7bd62"
+        opacity=".08"
+      />
+
+      <text
+        x="80"
+        y="130"
+        fill="#e7bd62"
+        font-size="38"
+        font-family="Arial"
+        font-weight="bold"
+      >
+        HERMANOS DE ORO
+      </text>
+
+      <text
+        x="80"
+        y="215"
+        fill="#ffffff"
+        font-size="68"
+        font-family="Arial"
+        font-weight="bold"
+      >
+        ${svgEscape(name)}
+      </text>
+
+      <text
+        x="80"
+        y="280"
+        fill="#e7bd62"
+        font-size="34"
+        font-family="Arial"
+      >
+        ${svgEscape(date)}
+      </text>
+
+      <text
+        x="80"
+        y="430"
+        fill="#ffffff"
+        font-size="42"
+        font-family="Arial"
+        font-weight="bold"
+      >
+        ${svgEscape(title.slice(0,45))}
+      </text>
+
+      <text
+        x="80"
+        y="500"
+        fill="#aab4c4"
+        font-size="25"
+        font-family="Arial"
+      >
+        IMAGEN DE EVENTO
+      </text>
+
+      <text
+        x="80"
+        y="700"
+        fill="#778398"
+        font-size="19"
+        font-family="Arial"
+      >
+        SIMULACIÓN DE FICCIÓN
+      </text>
+
+    </svg>
+  `;
+
+  return "data:image/svg+xml;charset=utf-8,"+
+    encodeURIComponent(svg);
+}
+
+function svgEscape(value){
+
+  return String(value||"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+}
+
+function regenerateImage(playerId,eventId){
+
+  const p=getPlayer(playerId);
+
+  if(!p)return;
+
+  const e=p.events.find(x=>x.id===eventId);
+
+  if(!e)return;
+
+  e.image=createEventImage({
+    playerName:p.name,
+    title:e.title,
+    date:e.date,
+    category:e.category
+  });
+
+  saveState();
+
+  refreshCurrentPlayer();
+}
+
+function refreshCurrentPlayer(){
+
+  if(currentView.type==="player"){
+    viewPlayer(currentView.playerId);
+  }else{
+    showHome();
+  }
+
+}
+
+function uploadEventImage(playerId,eventId){
+
+  const input=document.createElement("input");
+
+  input.type="file";
+  input.accept="image/*";
+
+  input.onchange=()=>{
+
+    const file=input.files[0];
+
+    if(!file)return;
+
+    const reader=new FileReader();
+
+    reader.onload=()=>{
+
+      const p=getPlayer(playerId);
+
+      if(!p)return;
+
+      const e=
+        p.events.find(
+          x=>x.id===eventId
+        );
+
+      if(!e)return;
+
+      e.image=reader.result;
+
+      saveState();
+
+      refreshCurrentPlayer();
+
+    };
+
+    reader.readAsDataURL(file);
+
+  };
+
+  input.click();
+}
+
+function viewEventImage(playerId,eventId){
+
+  const p=getPlayer(playerId);
+
+  if(!p)return;
+
+  const e=
+    p.events.find(
+      x=>x.id===eventId
+    );
+
+  if(!e)return;
+
+  openModal(`
+
+    <h2>${esc(e.title)}</h2>
+
+    <div class="event-meta">
+      ${esc(e.date)}
+      ·
+      ${esc(e.category)}
+    </div>
+
+    <img
+      class="image-preview"
+      src="${e.image}"
+    >
+
+    <div class="modal-actions">
+
+      <button
+        class="ghost"
+        onclick="closeModal()"
+      >
+        Cerrar
+      </button>
+
+      <button
+        class="primary"
+        onclick="regenerateImage('${p.id}','${e.id}');closeModal()"
+      >
+        🔄 Regenerar
+      </button>
+
+    </div>
+
+  `);
+}
+
+/* ============================================================
+   EDITAR EVENTO
+   ============================================================ */
+
+function editEvent(playerId,eventId){
+
+  const p=getPlayer(playerId);
+
+  if(!p)return;
+
+  const e=p.events.find(x=>x.id===eventId);
+
+  if(!e)return;
+
+  openModal(`
+
+    <h2>Editar evento</h2>
+
+    <div class="form">
+
+      <div class="field">
+
+        <label>Fecha</label>
+
+        <input
+          id="editDate"
+          value="${esc(e.date)}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Categoría</label>
+
+        <select id="editCategory">
+
+          ${[
+            "DEPORTE",
+            "SELECCIÓN RD",
+            "DINERO",
+            "NEGOCIO",
+            "REDES",
+            "AMOR/FAMILIA",
+            "DRAMA",
+            "FAMILIA",
+            "RD",
+            "VIDA"
+          ].map(c=>`
+            <option ${e.category===c?"selected":""}>
+              ${c}
+            </option>
+          `).join("")}
+
+        </select>
+
+      </div>
+
+      <div class="field full">
+
+        <label>Descripción</label>
+
+        <textarea id="editText">${esc(e.description)}</textarea>
+
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button
+        class="ghost"
+        onclick="closeModal()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        class="primary"
+        onclick="saveEditedEvent('${p.id}','${e.id}')"
+      >
+        Guardar cambios
+      </button>
+
+    </div>
+  `);
+}
+
+function saveEditedEvent(playerId,eventId){
+
+  const p=getPlayer(playerId);
+
+  if(!p)return;
+
+  const e=p.events.find(x=>x.id===eventId);
+
+  if(!e)return;
+
+  e.date=
+    document.getElementById("editDate").value;
+
+  e.description=
+    document.getElementById("editText").value;
+
+  e.category=
+    document.getElementById("editCategory").value;
+
+  e.title=
+    e.description
+      .replace(/^\s*\d{4}(?:-\d{2}-\d{2})?\s*[:\-]\s*/,"")
+      .split(/[.!?]/)[0]
+      .trim()
+      .slice(0,100)
+    ||
+    "Evento";
+
+  e.narrative=
+    createNarrative(
+      p,
+      e.description,
+      e.category,
+      e.delta.income,
+      e.delta.expense
+    );
+
+  saveState();
+
+  closeModal();
+
+  viewPlayer(playerId);
+}
+
+/* ============================================================
+   AVANZAR TIEMPO
+   ============================================================ */
+
+function openAdvanceModal(){
+
+  const s=story();
+
+  openModal(`
+
+    <h2>⏭ Avanzar tiempo</h2>
+
+    <div class="notice">
+      Las edades se calculan automáticamente según el año.
+      Los gastos recurrentes se descuentan según los meses
+      avanzados. No se inventan estadísticas NBA.
+    </div>
+
+    <div class="form" style="margin-top:15px">
+
+      <div class="field">
+
+        <label>Nuevo año</label>
+
+        <input
+          id="advanceYear"
+          type="number"
+          min="${s.currentYear}"
+          value="${s.currentYear+1}"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Tipo de avance</label>
+
+        <select id="advanceType">
+
+          <option value="year">
+            Año completo
+          </option>
+
+          <option value="season">
+            Temporada NBA
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button
+        class="ghost"
+        onclick="closeModal()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        class="primary"
+        onclick="advanceTime()"
+      >
+        Avanzar
+      </button>
+
+    </div>
+
+  `);
+}
+
+function advanceTime(){
+
+  const s=story();
+
+  const target=
+    Number(
+      document.getElementById("advanceYear").value
+    );
+
+  if(!target || target<s.currentYear){
+    alert("El tiempo solo puede avanzar.");
+    return;
+  }
+
+  applyTimeAdvance(s,target);
+
+  saveState();
+
+  closeModal();
+
+  showHome();
+}
+
+function applyTimeAdvance(s,target){
+
+  const years=
+    target-s.currentYear;
+
+  const months=
+    years*12;
+
+  if(months>0){
+
+    s.players.forEach(p=>{
+
+      normalizePlayer(p);
+
+      const monthly=
+        Object.values(p.budget)
+          .reduce(
+            (sum,value)=>sum+(Number(value)||0),
+            0
+          );
+
+      p.netWorth-=monthly*months;
+
+      /*
+        Si el patrimonio queda negativo,
+        se registra automáticamente un evento
+        de presión financiera.
+      */
+
+      if(p.netWorth<0){
+
+        const already=
+          p.events.some(e=>
+            e.category==="DRAMA" &&
+            e.autoDebtYear===target
+          );
+
+        if(!already){
+
+          p.events.push({
+
+            id:uid(),
+
+            date:String(target),
+
+            category:"DRAMA",
+
+            title:"Presión financiera",
+
+            description:
+              `${p.name} terminó el periodo con patrimonio negativo debido a sus gastos recurrentes.`,
+
+            narrative:
+              `${p.name} entra en terreno negativo después de cubrir sus gastos recurrentes. La presión financiera comienza a convertirse en parte de su historia.`,
+
+            chips:[
+              "🔴 Patrimonio negativo",
+              "💰 Deuda",
+              "🔥 Drama"
+            ],
+
+            delta:{
+              income:0,
+              expense:monthly*months
+            },
+
+            socialDelta:{
+              instagram:0,
+              tiktok:0,
+              x:0,
+              youtube:0
+            },
+
+            stats:{
+              pts:null,
+              reb:null,
+              ast:null,
+              gp:0
+            },
+
+            image:createEventImage({
+              playerName:p.name,
+              title:"Presión financiera",
+              date:String(target),
+              category:"DRAMA"
+            }),
+
+            autoDebtYear:target
+
+          });
+
+        }
+
+      }
+
+    });
+
+  }
+
+  s.currentYear=target;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+function openModal(html){
+
+  document.getElementById("modalBox").innerHTML=html;
+
+  document.getElementById("modal")
+    .classList.add("show");
+}
+
+function closeModal(){
+
+  document.getElementById("modal")
+    .classList.remove("show");
+}
+
+document.getElementById("modal")
+  .addEventListener("click",function(e){
+
+    if(e.target===this){
+      closeModal();
+    }
+
+  });
+
+/* ============================================================
+   HISTORIAS
+   ============================================================ */
+
+function switchStory(storyId){
+
+  if(!state.stories.some(s=>s.id===storyId)){
+    return;
+  }
+
+  state.activeStory=storyId;
+
+  saveState();
+
+  showHome();
+}
+
+/* ============================================================
+   EXPORTAR / IMPORTAR DATOS
+   ============================================================ */
+
+function exportGame(){
+
+  const data=
+    JSON.stringify(state,null,2);
+
+  const blob=
+    new Blob(
+      [data],
+      {type:"application/json"}
+    );
+
+  const url=
+    URL.createObjectURL(blob);
+
+  const a=
+    document.createElement("a");
+
+  a.href=url;
+  a.download="hermanos-de-oro-backup.json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function importGame(){
+
+  const input=
+    document.createElement("input");
+
+  input.type="file";
+  input.accept=".json,application/json";
+
+  input.onchange=()=>{
+
+    const file=input.files[0];
+
+    if(!file)return;
+
+    const reader=
+      new FileReader();
+
+    reader.onload=()=>{
+
+      try{
+
+        const imported=
+          JSON.parse(reader.result);
+
+        if(
+          !imported ||
+          !Array.isArray(imported.stories)
+        ){
+          throw new Error();
+        }
+
+        state=imported;
+
+        saveState();
+
+        showHome();
+
+        alert("Historia restaurada correctamente.");
+
+      }catch(e){
+
+        alert(
+          "El archivo no parece ser una partida válida."
+        );
+
+      }
+
+    };
+
+    reader.readAsText(file);
+  };
+
+  input.click();
+}
+
+/* ============================================================
+   CONFIGURACIÓN / HISTORIAS
+   ============================================================ */
+
+function openMoreMenu(){
+
+  const s=story();
+
+  openModal(`
+
+    <h2>Hermanos de Oro</h2>
+
+    <div class="notice">
+      Historia actual: <b>${esc(s?.name||"Ninguna")}</b>
+    </div>
+
+    <div class="event-actions">
+
+      <button
+        class="small"
+        onclick="exportGame()"
+      >
+        💾 Exportar partida
+      </button>
+
+      <button
+        class="small"
+        onclick="importGame();closeModal()"
+      >
+        📂 Importar partida
+      </button>
+
+      <button
+        class="small"
+        onclick="showStories()"
+      >
+        📚 Mis historias
+      </button>
+
+    </div>
+
+  `);
+}
+
+function showStories(){
+
+  closeModal();
+
+  const cards=
+    state.stories.map(s=>`
+
+      <div class="history-card">
+
+        <b>${esc(s.name)}</b>
+
+        <div class="sub">
+          ${s.players.length} protagonista${s.players.length===1?"":"s"}
+          · ${s.startYear} → ${s.currentYear}
+        </div>
+
+        <div class="event-actions">
+
+          <button
+            class="small"
+            onclick="switchStory('${s.id}')"
+          >
+            Abrir
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+  openModal(`
+
+    <h2>📚 Mis historias</h2>
+
+    ${
+      cards ||
+      `<div class="empty">
+         No tienes historias todavía.
+       </div>`
+    }
+
+    <div class="modal-actions">
+
+      <button
+        class="ghost"
+        onclick="closeModal()"
+      >
+        Cerrar
+      </button>
+
+    </div>
+
+  `);
+}
+
+/* ============================================================
+   NAVEGACIÓN EXTRA EN LA BARRA
+   ============================================================ */
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key==="Escape"){
+    closeModal();
+  }
+
+});
+
+/* ============================================================
+   INSTALACIÓN VISUAL
+   ============================================================ */
+
+if(
+  /iPhone|iPad|iPod/i.test(
+    navigator.userAgent
+  ) &&
+  !window.navigator.standalone
+){
+
+  setTimeout(()=>{
+
+    const hint=
+      document.getElementById("installHint");
+
+    if(hint){
+      hint.style.display="block";
+
+      setTimeout(()=>{
+        hint.style.display="none";
+      },9000);
+    }
+
+  },1500);
+}
+
+/* ============================================================
+   INICIO
+   ============================================================ */
+
+showHome();
+
+</script>
+
+</body>
+</html>
